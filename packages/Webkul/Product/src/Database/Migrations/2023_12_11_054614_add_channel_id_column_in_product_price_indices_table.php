@@ -12,6 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Skip foreign key operations for SQLite
+        $driver = Schema::getConnection()->getDriverName();
+        
+        if ($driver === 'sqlite') {
+            // SQLite doesn't support dropping foreign keys - just add the column if missing
+            if (!Schema::hasColumn('product_price_indices', 'channel_id')) {
+                Schema::table('product_price_indices', function (Blueprint $table) {
+                    $table->integer('channel_id')->unsigned()->default(1)->after('customer_group_id');
+                });
+            }
+            return;
+        }
+        
         $tablePrefix = DB::getTablePrefix();
 
         Schema::table('product_price_indices', function (Blueprint $table) use ($tablePrefix) {
