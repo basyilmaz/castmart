@@ -45,8 +45,14 @@ RUN chmod -R 777 storage bootstrap/cache database 2>/dev/null || true
 # Create SQLite database
 RUN touch database/database.sqlite && chmod 777 database/database.sqlite
 
+# Mark as installed (skip installer)
+RUN touch storage/installed && chmod 777 storage/installed
+
 # Create storage link
 RUN php artisan storage:link 2>/dev/null || true
+
+# Clear and rebuild config cache
+RUN php artisan config:clear 2>/dev/null || true
 
 # Expose port
 EXPOSE 8000
