@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Drop table first to fix previous failed migration
+        Schema::dropIfExists('trendyol_commission_rates');
+        
         // Komisyon Oranları tablosu
         Schema::create('trendyol_commission_rates', function (Blueprint $table) {
             $table->id();

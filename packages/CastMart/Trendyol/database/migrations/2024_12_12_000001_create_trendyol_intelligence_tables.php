@@ -11,6 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Drop tables first to fix previous failed migration
+        Schema::dropIfExists('trendyol_notification_settings');
+        Schema::dropIfExists('trendyol_buybox_tracking');
+        Schema::dropIfExists('trendyol_price_history');
+        Schema::dropIfExists('trendyol_price_rules');
+        Schema::dropIfExists('trendyol_intelligence_alerts');
+        
         // Intelligence Alerts tablosu
         Schema::create('trendyol_intelligence_alerts', function (Blueprint $table) {
             $table->id();

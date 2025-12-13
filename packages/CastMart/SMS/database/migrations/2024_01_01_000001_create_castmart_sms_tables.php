@@ -8,6 +8,10 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Drop tables first to fix previous failed migration
+        Schema::dropIfExists('castmart_otp_verifications');
+        Schema::dropIfExists('castmart_sms_logs');
+        
         // SMS Log tablosu
         Schema::create('castmart_sms_logs', function (Blueprint $table) {
             $table->id();

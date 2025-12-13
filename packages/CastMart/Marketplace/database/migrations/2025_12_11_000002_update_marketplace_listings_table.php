@@ -8,20 +8,33 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Drop the old unique constraint on account_id + product_id
-        Schema::table('marketplace_listings', function (Blueprint $table) {
-            $table->dropUnique(['account_id', 'product_id']);
-        });
+        // Skip if table doesn't exist (first migration handles it)
+        if (!Schema::hasTable('marketplace_listings')) {
+            return;
+        }
+        
+        // Drop the old unique constraint on account_id + product_id if exists
+        try {
+            Schema::table('marketplace_listings', function (Blueprint $table) {
+                $table->dropUnique(['account_id', 'product_id']);
+            });
+        } catch (\Exception $e) {
+            // Constraint might not exist
+        }
 
-        // Make product_id nullable if not already
+        // Make product_id nullable if not already - using unsignedInteger to match products.id
         Schema::table('marketplace_listings', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->nullable()->change();
+            $table->unsignedInteger('product_id')->nullable()->change();
         });
 
         // Add new unique constraint on account_id + external_id
-        Schema::table('marketplace_listings', function (Blueprint $table) {
-            $table->unique(['account_id', 'external_id']);
-        });
+        try {
+            Schema::table('marketplace_listings', function (Blueprint $table) {
+                $table->unique(['account_id', 'external_id']);
+            });
+        } catch (\Exception $e) {
+            // Constraint might already exist
+        }
 
         // Add missing columns if they don't exist
         if (!Schema::hasColumn('marketplace_listings', 'external_sku')) {

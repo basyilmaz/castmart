@@ -8,6 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Drop tables first to fix previous failed migration
+        Schema::dropIfExists('marketplace_reviews');
+        Schema::dropIfExists('customer_questions');
+        Schema::dropIfExists('marketplace_orders');
+        Schema::dropIfExists('marketplace_listings');
+        Schema::dropIfExists('marketplace_accounts');
+        
         Schema::create('marketplace_accounts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
@@ -25,7 +32,7 @@ return new class extends Migration
         Schema::create('marketplace_listings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('marketplace_accounts')->cascadeOnDelete();
-            $table->unsignedBigInteger('product_id')->index();
+            $table->unsignedInteger('product_id')->index(); // products.id is int unsigned
             $table->string('external_id', 100)->nullable()->index();
             $table->string('external_url', 500)->nullable();
             $table->enum('status', ['pending', 'active', 'rejected', 'passive'])->default('pending');
@@ -41,7 +48,7 @@ return new class extends Migration
         Schema::create('marketplace_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('marketplace_accounts')->cascadeOnDelete();
-            $table->unsignedBigInteger('order_id')->nullable()->index();
+            $table->unsignedInteger('order_id')->nullable()->index(); // orders.id is int unsigned
             $table->string('external_order_id', 100)->index();
             $table->string('external_order_number', 100)->nullable();
             $table->string('package_id', 100)->nullable();
@@ -61,7 +68,7 @@ return new class extends Migration
         Schema::create('customer_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('marketplace_accounts')->cascadeOnDelete();
-            $table->unsignedBigInteger('product_id')->nullable()->index();
+            $table->unsignedInteger('product_id')->nullable()->index(); // products.id is int unsigned
             $table->string('external_question_id', 100)->index();
             $table->string('external_product_id', 100)->nullable();
             $table->text('question_text');
@@ -77,7 +84,7 @@ return new class extends Migration
         Schema::create('marketplace_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained('marketplace_accounts')->cascadeOnDelete();
-            $table->unsignedBigInteger('product_id')->nullable()->index();
+            $table->unsignedInteger('product_id')->nullable()->index(); // products.id is int unsigned
             $table->string('external_product_id', 100)->index();
             $table->tinyInteger('rating')->unsigned();
             $table->text('comment')->nullable();
