@@ -1,0 +1,27 @@
+{
+    "name": "castmart/marketplace",
+    "description": "CastMart Marketplace Integration Core Package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "CastMart",
+            "email": "info@castmart.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "CastMart\\Marketplace\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CastMart\\Marketplace\\Providers\\MarketplaceServiceProvider"
+            ]
+        }
+    }
+}

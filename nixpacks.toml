@@ -1,0 +1,23 @@
+[phases.setup]
+nixPkgs = ['nodejs-18_x', 'npm-9_x']
+
+[phases.install]
+cmds = [
+    'npm ci',
+    'composer install --no-dev --optimize-autoloader'
+]
+
+[phases.build]
+cmds = [
+    'npm run build',
+    'php artisan config:cache',
+    'php artisan route:cache',
+    'php artisan view:cache'
+]
+
+[start]
+cmd = 'php artisan serve --host=0.0.0.0 --port=${PORT:-8000}'
+
+[variables]
+PHP_VERSION = '8.2'
+NODE_VERSION = '18'
