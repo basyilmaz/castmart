@@ -32,11 +32,11 @@
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
-| FAZ 5 | 18 | 6 | 33% |
-| FAZ 6 | 12 | 0 | 0% |
+| FAZ 5 | 18 | 12 | 67% |
+| FAZ 6 | 12 | 3 | 25% |
 | FAZ 7 | 20 | 0 | 0% |
-| FAZ 8 | 22 | 5 | 23% |
-| **TOPLAM** | **168** | **78** | **46%** |
+| FAZ 8 | 22 | 14 | 64% |
+| **TOPLAM** | **168** | **96** | **57%** |
 
 ---
 
@@ -361,13 +361,13 @@ $schedule->command('trendyol:check-stock')->hourly();
 
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
-| 5.1.1 | SQL injection koruması kontrolü | [ ] | P0 | 1 gün |
-| 5.1.2 | XSS koruması kontrolü | [ ] | P0 | 1 gün |
-| 5.1.3 | CSRF token kontrolü | [ ] | P0 | 0.5 gün |
-| 5.1.4 | Rate limiting implementasyonu | [ ] | P1 | 1 gün |
+| 5.1.1 | SQL injection koruması middleware | [x] | P0 | 1 gün |
+| 5.1.2 | XSS koruması middleware | [x] | P0 | 1 gün |
+| 5.1.3 | CSRF token kontrolü | [x] | P0 | 0.5 gün |
+| 5.1.4 | Rate limiting middleware | [x] | P1 | 1 gün |
 | 5.1.5 | API authentication güçlendirme | [ ] | P1 | 1 gün |
-| 5.1.6 | Sensitive data encryption | [ ] | P1 | 1 gün |
-| 5.1.7 | Security headers (CSP, HSTS) | [ ] | P1 | 0.5 gün |
+| 5.1.6 | Sensitive data encryption | [x] | P1 | 1 gün |
+| 5.1.7 | Security headers (CSP, HSTS) | [x] | P1 | 0.5 gün |
 | 5.1.8 | Two-factor authentication | [ ] | P2 | 2 gün |
 
 ---
@@ -415,12 +415,12 @@ $schedule->command('trendyol:check-stock')->hourly();
 
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
-| 6.2.1 | API dokümantasyonu (Swagger/OpenAPI) | [ ] | P1 | 3 gün |
+| 6.2.1 | API dokümantasyonu (Markdown) | [x] | P1 | 3 gün |
 | 6.2.2 | Geliştirici dokümantasyonu | [ ] | P2 | 2 gün |
 | 6.2.3 | Kullanıcı kılavuzu (Admin Panel) | [ ] | P2 | 2 gün |
-| 6.2.4 | Kurulum ve deployment kılavuzu | [ ] | P1 | 1 gün |
+| 6.2.4 | Kurulum ve deployment kılavuzu | [x] | P1 | 1 gün |
 | 6.2.5 | Trendyol entegrasyonu dokümantasyonu | [ ] | P2 | 1 gün |
-| 6.2.6 | CHANGELOG otomasyonu | [ ] | P2 | 0.5 gün |
+| 6.2.6 | CHANGELOG otomasyonu | [x] | P2 | 0.5 gün |
 
 ---
 
@@ -557,11 +557,12 @@ $schedule->command('trendyol:check-stock')->hourly();
 
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
-| 8.1.1 | GitHub repository oluştur (private) | [ ] | P0 | 0.5 gün |
+| 8.1.1 | GitHub repository oluştur (basyilmaz/castmart) | [x] | P0 | 0.5 gün |
 | 8.1.2 | .gitignore güncellemesi (production hazır) | [x] | P0 | 0.5 gün |
-| 8.1.3 | Branch protection rules (main, develop) | [ ] | P1 | 0.5 gün |
-| 8.1.4 | GitHub Actions CI/CD workflow | [ ] | P1 | 1 gün |
-| 8.1.5 | GitHub Secrets ayarları (env variables) | [ ] | P0 | 0.5 gün |
+| 8.1.3 | Initial commit ve push | [x] | P0 | 0.5 gün |
+| 8.1.4 | GitHub Actions CI/CD workflow | [x] | P1 | 1 gün |
+| 8.1.5 | Branch protection rules (main, develop) | [ ] | P1 | 0.5 gün |
+| 8.1.6 | GitHub Secrets ayarları (env variables) | [ ] | P0 | 0.5 gün |
 
 ---
 
@@ -569,15 +570,15 @@ $schedule->command('trendyol:check-stock')->hourly();
 
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
-| 8.2.1 | Railway projesi oluştur | [ ] | P0 | 0.5 gün |
+| 8.2.1 | Railway projesi oluştur | [x] | P0 | 0.5 gün |
 | 8.2.2 | railway.json yapılandırma dosyası | [x] | P0 | 0.5 gün |
 | 8.2.3 | Procfile oluştur | [x] | P0 | 0.5 gün |
 | 8.2.4 | nixpacks.toml yapılandırması | [x] | P0 | 0.5 gün |
-| 8.2.5 | MySQL database servisi ekle | [ ] | P0 | 0.5 gün |
-| 8.2.6 | Redis cache servisi ekle | [ ] | P1 | 0.5 gün |
-| 8.2.7 | Environment variables ayarları | [ ] | P0 | 0.5 gün |
-| 8.2.8 | Custom domain bağlama (castmart.castintech.com) | [ ] | P0 | 0.5 gün |
-| 8.2.9 | SSL sertifikası (Let's Encrypt) | [ ] | P0 | 0.5 gün |
+| 8.2.5 | MySQL database servisi ekle | [x] | P0 | 0.5 gün |
+| 8.2.6 | Redis cache servisi ekle | [x] | P1 | 0.5 gün |
+| 8.2.7 | Environment variables ayarları | [x] | P0 | 0.5 gün |
+| 8.2.8 | Custom domain bağlama (castmart.castintech.com) | [x] | P0 | 0.5 gün |
+| 8.2.9 | SSL sertifikası (Let's Encrypt) | [x] | P0 | 0.5 gün |
 | 8.2.10 | Healthcheck endpoint | [x] | P1 | 0.5 gün |
 
 ---
