@@ -8,6 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Skip if table doesn't exist yet
+        if (!Schema::hasTable('trendyol_price_rules')) {
+            return;
+        }
+        
         Schema::table('trendyol_price_rules', function (Blueprint $table) {
             if (!Schema::hasColumn('trendyol_price_rules', 'min_price')) {
                 $table->decimal('min_price', 10, 2)->nullable()->after('scope_data');
