@@ -8,6 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Drop tables first to fix previous failed migration
+        if (Schema::hasColumn('channels', 'tenant_id')) {
+            Schema::table('channels', function (Blueprint $table) {
+                $table->dropForeign(['tenant_id']);
+                $table->dropColumn('tenant_id');
+            });
+        }
+        Schema::dropIfExists('tenant_subscriptions');
+        Schema::dropIfExists('tenant_users');
+        Schema::dropIfExists('tenants');
+        
         // Tenants tablosu
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
@@ -19,8 +30,8 @@ return new class extends Migration
             $table->string('plan')->default('starter');
             $table->string('status')->default('pending'); // pending, active, suspended, cancelled
             
-            // Sahip
-            $table->unsignedBigInteger('owner_id')->nullable();
+            // Sahip - admins.id is int unsigned, not bigint
+            $table->unsignedInteger('owner_id')->nullable();
             $table->foreign('owner_id')->references('id')->on('admins')->nullOnDelete();
             
             // Ayarlar
@@ -43,7 +54,7 @@ return new class extends Migration
         Schema::create('tenant_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tenant_id');
-            $table->unsignedBigInteger('admin_id');
+            $table->unsignedInteger('admin_id'); // admins.id is int unsigned
             $table->string('role')->default('staff'); // owner, admin, manager, staff, viewer
             $table->json('permissions')->nullable();
             $table->boolean('is_owner')->default(false);
