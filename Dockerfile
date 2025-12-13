@@ -12,12 +12,10 @@ RUN apt-get update && apt-get install -y \
     unzip \
     nodejs \
     npm \
-    sqlite3 \
-    libsqlite3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
@@ -39,29 +37,21 @@ RUN npm install && npm run build
 
 # Set permissions
 RUN chmod -R 777 storage bootstrap/cache 2>/dev/null || true
-RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views database 2>/dev/null || true
-RUN chmod -R 777 storage bootstrap/cache database 2>/dev/null || true
-
-# Create SQLite database
-RUN touch database/database.sqlite && chmod 777 database/database.sqlite
+RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views 2>/dev/null || true
+RUN chmod -R 777 storage bootstrap/cache 2>/dev/null || true
 
 # Mark as installed (skip installer)
 RUN touch storage/installed && chmod 777 storage/installed
 
-# Create storage link
-RUN php artisan storage:link 2>/dev/null || true
-
-# Clear config cache
+# Clear any cached config from build
 RUN php artisan config:clear 2>/dev/null || true
-
-# Run migrations
-RUN php artisan migrate --force 2>/dev/null || true
-
-# Seed the database with basic data
-RUN php artisan db:seed --force 2>/dev/null || true
+RUN php artisan cache:clear 2>/dev/null || true
+RUN php artisan route:clear 2>/dev/null || true
+RUN php artisan view:clear 2>/dev/null || true
 
 # Expose port
 EXPOSE 8000
 
-# Stay in /var/www and use PHP built-in server with document root
-CMD ["sh", "-c", "cd /var/www && php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
+# CMD is overridden by railway.json startCommand
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public public/router.php"]
+
