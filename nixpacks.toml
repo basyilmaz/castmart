@@ -1,22 +1,25 @@
+# CastMart Nixpacks Configuration
+# PHP 8.2 + Node 18 + Composer
+
 [phases.setup]
-nixPkgs = ['nodejs-18_x', 'npm-9_x']
+nixPkgs = ['php82', 'php82Packages.composer', 'nodejs-18_x', 'npm-9_x', 'php82Extensions.pdo', 'php82Extensions.pdo_mysql', 'php82Extensions.mbstring', 'php82Extensions.xml', 'php82Extensions.curl', 'php82Extensions.gd', 'php82Extensions.zip', 'php82Extensions.bcmath', 'php82Extensions.redis']
 
 [phases.install]
 cmds = [
     'npm install',
-    'composer install --no-dev --optimize-autoloader'
+    'composer install --no-dev --optimize-autoloader --ignore-platform-reqs'
 ]
 
 [phases.build]
 cmds = [
     'npm run build',
-    'php artisan config:cache',
-    'php artisan route:cache',
-    'php artisan view:cache'
+    'php artisan config:cache || true',
+    'php artisan route:cache || true',
+    'php artisan view:cache || true'
 ]
 
 [start]
-cmd = 'php artisan serve --host=0.0.0.0 --port=${PORT:-8000}'
+cmd = 'php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}'
 
 [variables]
 PHP_VERSION = '8.2'

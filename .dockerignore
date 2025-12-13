@@ -1,0 +1,21 @@
+# Ignore these files/folders when building Docker image
+/node_modules
+/vendor
+/.git
+/.github
+/.idea
+/.vscode
+/tests
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+*.log
+*.md
+!README.md
+.env
+.env.*
+!.env.example
+.phpunit.result.cache
+Thumbs.db
+.DS_Store
