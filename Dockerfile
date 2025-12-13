@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.4-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -28,35 +28,25 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www
 
-# Copy composer files first for better caching
-COPY composer.json composer.lock ./
+# Copy all files
+COPY . .
 
 # Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs
-
-# Copy package.json for npm
-COPY package*.json ./
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
 # Install npm dependencies
 RUN npm install
-
-# Copy the rest of the application
-COPY . .
-
-# Run composer scripts after copying all files
-RUN composer dump-autoload --optimize
 
 # Build assets
 RUN npm run build
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
-
-# Create storage link
-RUN php artisan storage:link || true
+RUN chmod -R 775 storage bootstrap/cache
+RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views
+RUN chmod -R 775 storage bootstrap/cache
 
 # Expose port
 EXPOSE 8000
 
 # Start command
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+CMD php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
