@@ -8,11 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Drop if exists to fix previous failed migration
+        Schema::dropIfExists('castmart_shipments');
+        
         Schema::create('castmart_shipments', function (Blueprint $table) {
             $table->id();
             
             // İlişki
-            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('orders')->nullOnDelete();
             
             // Kargo bilgileri
