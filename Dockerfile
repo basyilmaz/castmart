@@ -13,10 +13,8 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     sqlite3 \
-    libsqlite3-dev
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    libsqlite3-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip
@@ -44,18 +42,15 @@ RUN chmod -R 777 storage bootstrap/cache 2>/dev/null || true
 RUN mkdir -p storage/logs storage/framework/cache storage/framework/sessions storage/framework/views database 2>/dev/null || true
 RUN chmod -R 777 storage bootstrap/cache database 2>/dev/null || true
 
-# Create SQLite database for fallback
+# Create SQLite database
 RUN touch database/database.sqlite && chmod 777 database/database.sqlite
 
 # Create storage link
 RUN php artisan storage:link 2>/dev/null || true
 
-# Copy and setup startup script
-COPY docker/start.sh /start.sh
-RUN chmod +x /start.sh
-
 # Expose port
 EXPOSE 8000
 
-# Start
-CMD ["/start.sh"]
+# Use PHP built-in server directly - NO artisan serve
+WORKDIR /var/www/public
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t /var/www/public /var/www/public/index.php"]
