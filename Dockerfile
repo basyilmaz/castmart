@@ -51,6 +51,5 @@ RUN php artisan storage:link 2>/dev/null || true
 # Expose port
 EXPOSE 8000
 
-# Use PHP built-in server directly - NO artisan serve
-WORKDIR /var/www/public
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t /var/www/public /var/www/public/index.php"]
+# Stay in /var/www and use PHP built-in server with document root
+CMD ["sh", "-c", "cd /var/www && php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
