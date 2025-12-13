@@ -33,10 +33,10 @@
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
 | FAZ 5 | 18 | 12 | 67% |
-| FAZ 6 | 12 | 3 | 25% |
+| FAZ 6 | 15 | 10 | 67% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
-| **TOPLAM** | **168** | **96** | **57%** |
+| **TOPLAM** | **171** | **103** | **60%** |
 
 ---
 
@@ -402,12 +402,15 @@ $schedule->command('trendyol:check-stock')->hourly();
 
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
-| 6.1.1 | Unit test altyapısı kurulumu (PHPUnit/Pest) | [ ] | P1 | 1 gün |
+| 6.1.1 | Unit test altyapısı kurulumu (PHPUnit/Pest) | [x] | P1 | 1 gün |
 | 6.1.2 | Feature test'ler için factory'ler | [ ] | P1 | 2 gün |
-| 6.1.3 | Trendyol modülü unit testleri | [ ] | P1 | 3 gün |
-| 6.1.4 | API endpoint testleri | [ ] | P1 | 2 gün |
-| 6.1.5 | E2E testler (Playwright/Cypress) | [ ] | P2 | 3 gün |
-| 6.1.6 | CI/CD pipeline test entegrasyonu | [ ] | P2 | 1 gün |
+| 6.1.3 | Trendyol modülü unit testleri | [x] | P1 | 3 gün |
+| 6.1.4 | API endpoint testleri | [x] | P1 | 2 gün |
+| 6.1.5 | Marketing/Coupon testleri | [x] | P1 | 2 gün |
+| 6.1.6 | Tenant testleri | [x] | P1 | 2 gün |
+| 6.1.7 | Middleware testleri | [x] | P2 | 1 gün |
+| 6.1.8 | E2E testler (Playwright/Cypress) | [ ] | P2 | 3 gün |
+| 6.1.9 | CI/CD pipeline test entegrasyonu | [x] | P2 | 1 gün |
 
 ---
 
