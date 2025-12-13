@@ -48,12 +48,31 @@ class DashboardController extends Controller
      */
     public function stats()
     {
-        $stats = $this->dashboardHelper->{$this->typeFunctions[request()->query('type')]}();
+        try {
+            $type = request()->query('type');
+            
+            if (!isset($this->typeFunctions[$type])) {
+                return response()->json(['error' => 'Invalid type: ' . $type], 400);
+            }
+            
+            $stats = $this->dashboardHelper->{$this->typeFunctions[$type]}();
 
-        return response()->json([
-            'statistics' => $stats,
-            'date_range' => $this->dashboardHelper->getDateRange(),
-        ]);
+            return response()->json([
+                'statistics' => $stats,
+                'date_range' => $this->dashboardHelper->getDateRange(),
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Dashboard stats error: ' . $e->getMessage(), [
+                'type' => request()->query('type'),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return response()->json([
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+            ], 500);
+        }
     }
 }
 
