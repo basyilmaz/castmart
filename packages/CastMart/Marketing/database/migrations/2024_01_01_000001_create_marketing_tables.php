@@ -8,6 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Drop tables first to fix previous failed migration
+        Schema::dropIfExists('referral_rewards');
+        Schema::dropIfExists('loyalty_transactions');
+        Schema::dropIfExists('loyalty_accounts');
+        Schema::dropIfExists('coupon_usages');
+        Schema::dropIfExists('coupons');
+        
         // Kuponlar
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
@@ -41,8 +48,8 @@ return new class extends Migration
         Schema::create('coupon_usages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('coupon_id')->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('order_id')->nullable();
             $table->decimal('discount_amount', 10, 2);
             $table->timestamps();
             
@@ -52,7 +59,7 @@ return new class extends Migration
         // Sadakat hesapları
         Schema::create('loyalty_accounts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id')->unique();
+            $table->unsignedInteger('customer_id')->unique();
             $table->integer('total_points')->default(0);
             $table->integer('available_points')->default(0);
             $table->integer('lifetime_points')->default(0);
