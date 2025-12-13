@@ -51,8 +51,14 @@ RUN touch storage/installed && chmod 777 storage/installed
 # Create storage link
 RUN php artisan storage:link 2>/dev/null || true
 
-# Clear and rebuild config cache
+# Clear config cache
 RUN php artisan config:clear 2>/dev/null || true
+
+# Run migrations
+RUN php artisan migrate --force 2>/dev/null || true
+
+# Seed the database with basic data
+RUN php artisan db:seed --force 2>/dev/null || true
 
 # Expose port
 EXPOSE 8000
