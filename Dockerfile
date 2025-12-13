@@ -50,8 +50,12 @@ RUN touch database/database.sqlite && chmod 777 database/database.sqlite
 # Create storage link
 RUN php artisan storage:link 2>/dev/null || true
 
+# Copy and setup startup script
+COPY docker/start.sh /start.sh
+RUN chmod +x /start.sh
+
 # Expose port
 EXPOSE 8000
 
-# Start with PORT from environment
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+# Start
+CMD ["/start.sh"]
