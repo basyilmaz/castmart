@@ -27,7 +27,7 @@
 
 | Faz | Toplam Görev | Tamamlanan | İlerleme |
 |-----|--------------|------------|----------|
-| FAZ 0 | 25 | 2 | 8% |
+| FAZ 0 | 25 | 6 | 24% |
 | FAZ 1 | 20 | 17 | 85% |
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
@@ -54,11 +54,11 @@
 | # | Görev | Durum | Öncelik | Sorumlu |
 |---|-------|-------|---------|---------|
 | 0.1.1 | Git flow branching stratejisi oluştur (main, develop, feature/*, hotfix/*) | [ ] | P0 | DevOps |
-| 0.1.2 | `.gitignore` dosyasını güncelle (vendor, node_modules, .env) | [ ] | P0 | DevOps |
-| 0.1.3 | Semantic Versioning (SemVer) standardını uygula: `MAJOR.MINOR.PATCH` | [ ] | P0 | Lead Dev |
-| 0.1.4 | `VERSION` dosyası oluştur (kök dizinde) | [ ] | P0 | Lead Dev |
-| 0.1.5 | CHANGELOG.md dosyası oluştur | [ ] | P1 | Lead Dev |
-| 0.1.6 | Git tag sistemi ile release yönetimi (`v1.0.0`, `v1.0.1`) | [ ] | P1 | DevOps |
+| 0.1.2 | `.gitignore` dosyasını güncelle (vendor, node_modules, .env) | [x] | P0 | DevOps |
+| 0.1.3 | Semantic Versioning (SemVer) standardını uygula: `MAJOR.MINOR.PATCH` | [x] | P0 | Lead Dev |
+| 0.1.4 | `VERSION` dosyası oluştur (kök dizinde) | [x] | P0 | Lead Dev |
+| 0.1.5 | CHANGELOG.md dosyası oluştur | [x] | P1 | Lead Dev |
+| 0.1.6 | Git tag sistemi ile release yönetimi (`v1.0.0`, `v1.0.1`) | [x] | P1 | DevOps |
 | 0.1.7 | Pre-commit hook'ları kur (linting, formatting) | [ ] | P2 | DevOps |
 
 ---
@@ -81,8 +81,8 @@
 
 | # | Görev | Durum | Dosya/Konum | Notlar |
 |---|-------|-------|-------------|--------|
-| 0.2.2.1 | `README.md` dosyasını CastMart/CastInTech ile güncelle | [ ] | `README.md` | Logo, linkler |
-| 0.2.2.2 | `config/app.php` uygulama adını güncelle | [ ] | `config/app.php` | |
+| 0.2.2.1 | `README.md` dosyasını CastMart/CastInTech ile güncelle | [x] | `README.md` | Logo, linkler |
+| 0.2.2.2 | `config/app.php` uygulama adını güncelle | [x] | `config/app.php` | |
 | 0.2.2.3 | Admin panel logo ve favicon güncelle | [ ] | `public/admin/` | |
 | 0.2.2.4 | Shop (frontend) logo ve favicon güncelle | [ ] | `public/themes/` | |
 | 0.2.2.5 | E-posta şablonlarındaki marka bilgilerini güncelle | [ ] | Email templates | |
