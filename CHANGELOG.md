@@ -94,6 +94,14 @@ Bu proje [Semantic Versioning](https://semver.org/lang/tr/) standardını takip 
   - Lazy loading desteği
   - ServeWebP middleware
   - Batch optimizasyon komutu (images:optimize)
+- **Two-Factor Authentication (2FA)** (app/Services)
+  - Google Authenticator desteği
+  - Email OTP desteği
+  - SMS OTP desteği
+  - Recovery kodları (8 adet)
+  - Müşteri ve Admin desteği
+  - Session timeout (30 dakika)
+  - Rate limiting koruması
 
 ### Değiştirildi
 - IntelligenceService: Tüm hardcoded metrikler gerçek veritabanı sorgularıyla değiştirildi

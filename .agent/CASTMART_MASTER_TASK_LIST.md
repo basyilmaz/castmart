@@ -32,7 +32,7 @@
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
-| FAZ 5 | 18 | 14 | 78% |
+| FAZ 5 | 18 | 15 | 83% |
 | FAZ 6 | 15 | 10 | 67% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
@@ -368,7 +368,7 @@ $schedule->command('trendyol:check-stock')->hourly();
 | 5.1.5 | API authentication güçlendirme | [ ] | P1 | 1 gün |
 | 5.1.6 | Sensitive data encryption | [x] | P1 | 1 gün |
 | 5.1.7 | Security headers (CSP, HSTS) | [x] | P1 | 0.5 gün |
-| 5.1.8 | Two-factor authentication | [ ] | P2 | 2 gün |
+| 5.1.8 | Two-factor authentication | [x] | P2 | 2 gün |
 
 ---
 
