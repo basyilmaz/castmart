@@ -20,6 +20,12 @@ Bu proje [Semantic Versioning](https://semver.org/lang/tr/) standardını takip 
   - Checkout form entegrasyonu
   - İade ve iptal işlemleri
   - BIN sorgulama (taksit seçenekleri)
+- **PayTR Ödeme Entegrasyonu** (packages/CastMart/PayTR)
+  - iFrame checkout desteği
+  - Taksitli ödeme (1-12 ay)
+  - Callback (webhook) entegrasyonu
+  - İade işlemleri
+  - BIN sorgulama (taksit oranları)
 - **Kargo Entegrasyonu** (packages/CastMart/Shipping)
   - Aras Kargo API entegrasyonu (SOAP)
   - MNG Kargo API entegrasyonu (REST)

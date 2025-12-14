@@ -54,4 +54,5 @@ return [
     CastMart\SMS\Providers\SmsServiceProvider::class,
     CastMart\Tenant\Providers\TenantServiceProvider::class,
     CastMart\Marketing\Providers\MarketingServiceProvider::class,
+    CastMart\PayTR\Providers\PayTRServiceProvider::class,
 ];
