@@ -33,7 +33,7 @@
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
 | FAZ 5 | 18 | 18 | 100% |
-| FAZ 6 | 15 | 10 | 67% |
+| FAZ 6 | 15 | 13 | 87% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
 | **TOPLAM** | **171** | **103** | **60%** |
@@ -419,10 +419,10 @@ $schedule->command('trendyol:check-stock')->hourly();
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
 | 6.2.1 | API dokümantasyonu (Markdown) | [x] | P1 | 3 gün |
-| 6.2.2 | Geliştirici dokümantasyonu | [ ] | P2 | 2 gün |
-| 6.2.3 | Kullanıcı kılavuzu (Admin Panel) | [ ] | P2 | 2 gün |
+| 6.2.2 | Geliştirici dokümantasyonu | [x] | P2 | 2 gün |
+| 6.2.3 | Kullanıcı kılavuzu (Admin Panel) | [x] | P2 | 2 gün |
 | 6.2.4 | Kurulum ve deployment kılavuzu | [x] | P1 | 1 gün |
-| 6.2.5 | Trendyol entegrasyonu dokümantasyonu | [ ] | P2 | 1 gün |
+| 6.2.5 | Trendyol entegrasyonu dokümantasyonu | [x] | P2 | 1 gün |
 | 6.2.6 | CHANGELOG otomasyonu | [x] | P2 | 0.5 gün |
 
 ---
