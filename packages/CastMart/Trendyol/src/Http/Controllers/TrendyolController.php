@@ -1746,4 +1746,147 @@ class TrendyolController extends Controller
             'data' => $rule,
         ]);
     }
+
+    // ===== EXCEL IMPORT/EXPORT =====
+
+    /**
+     * Excel export sayfası
+     */
+    public function excelExportPage()
+    {
+        $accounts = MarketplaceAccount::marketplace('trendyol')->active()->get();
+        return view('trendyol::admin.excel.export', compact('accounts'));
+    }
+
+    /**
+     * Ürünleri export et
+     */
+    public function exportProducts(Request $request)
+    {
+        $account = MarketplaceAccount::find($request->account_id);
+        
+        if (!$account) {
+            return back()->with('error', 'Hesap bulunamadı.');
+        }
+
+        $exporter = new \CastMart\Trendyol\Services\ExcelExportService($account);
+        $path = $exporter->exportProducts($request->only(['status', 'category_id']));
+
+        return response()->download(storage_path('app/' . $path), basename($path), [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ])->deleteFileAfterSend();
+    }
+
+    /**
+     * Siparişleri export et
+     */
+    public function exportOrders(Request $request)
+    {
+        $account = MarketplaceAccount::find($request->account_id);
+        
+        if (!$account) {
+            return back()->with('error', 'Hesap bulunamadı.');
+        }
+
+        $exporter = new \CastMart\Trendyol\Services\ExcelExportService($account);
+        $path = $exporter->exportOrders($request->only(['status', 'from', 'to']));
+
+        return response()->download(storage_path('app/' . $path), basename($path), [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ])->deleteFileAfterSend();
+    }
+
+    /**
+     * Fiyat güncelleme şablonu indir
+     */
+    public function exportPriceTemplate(Request $request)
+    {
+        $account = MarketplaceAccount::find($request->account_id);
+        
+        if (!$account) {
+            return back()->with('error', 'Hesap bulunamadı.');
+        }
+
+        $exporter = new \CastMart\Trendyol\Services\ExcelExportService($account);
+        $path = $exporter->exportPriceTemplate();
+
+        return response()->download(storage_path('app/' . $path), basename($path), [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ])->deleteFileAfterSend();
+    }
+
+    /**
+     * Komisyon raporu export et
+     */
+    public function exportCommissionReport(Request $request)
+    {
+        $account = MarketplaceAccount::find($request->account_id);
+        
+        if (!$account) {
+            return back()->with('error', 'Hesap bulunamadı.');
+        }
+
+        $exporter = new \CastMart\Trendyol\Services\ExcelExportService($account);
+        $path = $exporter->exportCommissionReport($request->only(['from', 'to']));
+
+        return response()->download(storage_path('app/' . $path), basename($path), [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ])->deleteFileAfterSend();
+    }
+
+    /**
+     * Excel import sayfası
+     */
+    public function excelImportPage()
+    {
+        $accounts = MarketplaceAccount::marketplace('trendyol')->active()->get();
+        return view('trendyol::admin.excel.import', compact('accounts'));
+    }
+
+    /**
+     * Fiyat/stok güncelleme import et
+     */
+    public function importPriceUpdate(Request $request)
+    {
+        $request->validate([
+            'account_id' => 'required|exists:marketplace_accounts,id',
+            'file' => 'required|file|mimes:csv,txt|max:10240',
+        ]);
+
+        $account = MarketplaceAccount::find($request->account_id);
+        $importer = new \CastMart\Trendyol\Services\ExcelImportService($account);
+        $result = $importer->importPriceUpdate($request->file('file'));
+
+        if ($result['success']) {
+            return back()->with('success', $result['message'])
+                         ->with('warnings', $result['warnings']);
+        }
+
+        return back()->with('error', $result['message'])
+                     ->with('errors_list', $result['errors']);
+    }
+
+    /**
+     * Toplu ürün import et
+     */
+    public function importProducts(Request $request)
+    {
+        $request->validate([
+            'account_id' => 'required|exists:marketplace_accounts,id',
+            'file' => 'required|file|mimes:csv,txt|max:10240',
+        ]);
+
+        $account = MarketplaceAccount::find($request->account_id);
+        $importer = new \CastMart\Trendyol\Services\ExcelImportService($account);
+        $result = $importer->importProducts($request->file('file'));
+
+        if ($result['success']) {
+            return back()->with('success', $result['message'])
+                         ->with('warnings', $result['warnings']);
+        }
+
+        return back()->with('error', $result['message'])
+                     ->with('errors_list', $result['errors']);
+    }
 }
+

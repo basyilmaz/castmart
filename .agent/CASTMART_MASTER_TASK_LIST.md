@@ -222,7 +222,7 @@ packages/CastMart/Shipping/
 | 2.2.2 | Scheduler aktivasyonu (cron jobs) | [x] | P0 | 1 gün |
 | 2.2.3 | Fiyat kuralları backend entegrasyonu | [x] | P1 | 2 gün |
 | 2.2.4 | Gerçek Trendyol API senkronizasyonu | [x] | P0 | 3 gün |
-| 2.2.5 | Excel import/export özelliği | [ ] | P2 | 2 gün |
+| 2.2.5 | Excel import/export özelliği | [x] | P2 | 2 gün |
 | 2.2.6 | Grafik kütüphanesi entegrasyonu (Chart.js) | [ ] | P2 | 1 gün |
 
 **Düzeltilecek dosyalar:**

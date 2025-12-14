@@ -110,4 +110,15 @@ Route::group([
     Route::get('/notifications', [TrendyolController::class, 'notifications'])->name('admin.marketplace.trendyol.notifications');
     Route::post('/notifications/mark-read', [TrendyolController::class, 'markNotificationRead'])->name('admin.marketplace.trendyol.notifications.mark-read');
     Route::post('/notifications/mark-all-read', [TrendyolController::class, 'markAllNotificationsRead'])->name('admin.marketplace.trendyol.notifications.mark-all-read');
+
+    // Excel Import/Export
+    Route::get('/excel/export', [TrendyolController::class, 'excelExportPage'])->name('admin.marketplace.trendyol.excel.export');
+    Route::post('/excel/export-products', [TrendyolController::class, 'exportProducts'])->name('admin.marketplace.trendyol.excel.export-products');
+    Route::post('/excel/export-orders', [TrendyolController::class, 'exportOrders'])->name('admin.marketplace.trendyol.excel.export-orders');
+    Route::post('/excel/export-price-template', [TrendyolController::class, 'exportPriceTemplate'])->name('admin.marketplace.trendyol.excel.export-price-template');
+    Route::post('/excel/export-commission-report', [TrendyolController::class, 'exportCommissionReport'])->name('admin.marketplace.trendyol.excel.export-commission');
+    Route::get('/excel/import', [TrendyolController::class, 'excelImportPage'])->name('admin.marketplace.trendyol.excel.import');
+    Route::post('/excel/import-price-update', [TrendyolController::class, 'importPriceUpdate'])->name('admin.marketplace.trendyol.excel.import-price');
+    Route::post('/excel/import-products', [TrendyolController::class, 'importProducts'])->name('admin.marketplace.trendyol.excel.import-products');
 });
+
