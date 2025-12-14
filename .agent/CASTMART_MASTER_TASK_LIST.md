@@ -27,7 +27,7 @@
 
 | Faz | Toplam Görev | Tamamlanan | İlerleme |
 |-----|--------------|------------|----------|
-| FAZ 0 | 25 | 6 | 24% |
+| FAZ 0 | 25 | 8 | 32% |
 | FAZ 1 | 20 | 17 | 85% |
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
@@ -53,7 +53,7 @@
 
 | # | Görev | Durum | Öncelik | Sorumlu |
 |---|-------|-------|---------|---------|
-| 0.1.1 | Git flow branching stratejisi oluştur (main, develop, feature/*, hotfix/*) | [ ] | P0 | DevOps |
+| 0.1.1 | Git flow branching stratejisi oluştur (main, develop, feature/*, hotfix/*) | [x] | P0 | DevOps |
 | 0.1.2 | `.gitignore` dosyasını güncelle (vendor, node_modules, .env) | [x] | P0 | DevOps |
 | 0.1.3 | Semantic Versioning (SemVer) standardını uygula: `MAJOR.MINOR.PATCH` | [x] | P0 | Lead Dev |
 | 0.1.4 | `VERSION` dosyası oluştur (kök dizinde) | [x] | P0 | Lead Dev |
