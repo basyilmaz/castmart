@@ -32,7 +32,7 @@
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
-| FAZ 5 | 18 | 16 | 89% |
+| FAZ 5 | 18 | 17 | 94% |
 | FAZ 6 | 15 | 10 | 67% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
@@ -382,7 +382,7 @@ $schedule->command('trendyol:check-stock')->hourly();
 | 5.2.4 | Lazy loading implementasyonu | [x] | P2 | 1 gün |
 | 5.2.5 | CDN entegrasyonu | [x] | P2 | 1 gün |
 | 5.2.6 | Database indexing kontrolü | [x] | P1 | 1 gün |
-| 5.2.7 | Queue system optimizasyonu | [ ] | P2 | 1 gün |
+| 5.2.7 | Queue system optimizasyonu | [x] | P2 | 1 gün |
 | 5.2.8 | Response cache middleware | [x] | P1 | 1 gün |
 | 5.2.9 | Gzip compression middleware | [x] | P1 | 0.5 gün |
 | 5.2.10 | Cache warming command | [x] | P2 | 0.5 gün |

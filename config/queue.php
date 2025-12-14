@@ -109,4 +109,52 @@ return [
         'table'    => 'failed_jobs',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Queue Priority & Organization
+    |--------------------------------------------------------------------------
+    */
+    'queues' => [
+        'high',       // Kritik işler (ödeme, sipariş)
+        'default',    // Normal işler
+        'emails',     // E-posta gönderimi
+        'notifications', // Bildirimler
+        'sync',       // API senkronizasyonu (Trendyol vb.)
+        'reports',    // Raporlama
+        'low',        // Düşük öncelikli (cache warm, cleanup)
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Rate Limiting
+    |--------------------------------------------------------------------------
+    */
+    'rate_limits' => [
+        'jobs' => [
+            'limit' => 100,      // Dakikada max job
+            'decay' => 60,       // Saniye cinsinden süre
+        ],
+        'emails' => [
+            'limit' => 30,       // Dakikada max e-posta
+            'decay' => 60,
+        ],
+        'api_sync' => [
+            'limit' => 10,       // Dakikada max API çağrısı
+            'decay' => 60,
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Worker Configuration
+    |--------------------------------------------------------------------------
+    */
+    'worker' => [
+        'sleep' => 3,           // Boş kuyruktayken bekleme (saniye)
+        'timeout' => 60,        // Job timeout (saniye)
+        'memory' => 128,        // Max memory (MB)
+        'tries' => 3,           // Default retry sayısı
+    ],
+
 ];
+
