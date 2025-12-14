@@ -88,6 +88,12 @@ Bu proje [Semantic Versioning](https://semver.org/lang/tr/) standardını takip 
   - CompressResponse middleware (gzip)
   - Cache warm command
   - Query optimize command
+- **Image Optimizasyonu** (app/Services)
+  - WebP otomatik dönüşüm
+  - Thumbnail oluşturma (small, medium, large, product)
+  - Lazy loading desteği
+  - ServeWebP middleware
+  - Batch optimizasyon komutu (images:optimize)
 
 ### Değiştirildi
 - IntelligenceService: Tüm hardcoded metrikler gerçek veritabanı sorgularıyla değiştirildi

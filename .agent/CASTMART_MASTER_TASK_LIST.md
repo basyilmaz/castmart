@@ -32,7 +32,7 @@
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
-| FAZ 5 | 18 | 12 | 67% |
+| FAZ 5 | 18 | 14 | 78% |
 | FAZ 6 | 15 | 10 | 67% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
@@ -378,8 +378,8 @@ $schedule->command('trendyol:check-stock')->hourly();
 |---|-------|-------|---------|------|
 | 5.2.1 | Database query optimizasyonu | [x] | P1 | 2 gün |
 | 5.2.2 | Redis caching stratejisi | [x] | P1 | 2 gün |
-| 5.2.3 | Image optimization (WebP) | [ ] | P1 | 1 gün |
-| 5.2.4 | Lazy loading implementasyonu | [ ] | P2 | 1 gün |
+| 5.2.3 | Image optimization (WebP) | [x] | P1 | 1 gün |
+| 5.2.4 | Lazy loading implementasyonu | [x] | P2 | 1 gün |
 | 5.2.5 | CDN entegrasyonu | [ ] | P2 | 1 gün |
 | 5.2.6 | Database indexing kontrolü | [x] | P1 | 1 gün |
 | 5.2.7 | Queue system optimizasyonu | [ ] | P2 | 1 gün |
