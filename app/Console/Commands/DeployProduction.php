@@ -26,19 +26,19 @@ class DeployProduction extends Command
 
         // 1. Maintenance mode
         $this->step('1. Bakım modunu aktifleştir');
-        $this->runCommand('down', ['--render' => 'maintenance']);
+        $this->executeCommand('down', ['--render' => 'maintenance']);
 
         // 2. Clear old caches
         $this->step('2. Cache temizle');
-        $this->runCommand('cache:clear');
-        $this->runCommand('config:clear');
-        $this->runCommand('route:clear');
-        $this->runCommand('view:clear');
+        $this->executeCommand('cache:clear');
+        $this->executeCommand('config:clear');
+        $this->executeCommand('route:clear');
+        $this->executeCommand('view:clear');
 
         // 3. Run migrations
         if (!$this->option('skip-migrations')) {
             $this->step('3. Migration çalıştır');
-            $this->runCommand('migrate', ['--force' => true]);
+            $this->executeCommand('migrate', ['--force' => true]);
         } else {
             $this->step('3. Migration atlandı');
         }
@@ -46,10 +46,10 @@ class DeployProduction extends Command
         // 4. Generate new caches
         if (!$this->option('skip-cache')) {
             $this->step('4. Cache oluştur');
-            $this->runCommand('config:cache');
-            $this->runCommand('route:cache');
-            $this->runCommand('view:cache');
-            $this->runCommand('event:cache');
+            $this->executeCommand('config:cache');
+            $this->executeCommand('route:cache');
+            $this->executeCommand('view:cache');
+            $this->executeCommand('event:cache');
         } else {
             $this->step('4. Cache oluşturma atlandı');
         }
@@ -57,22 +57,22 @@ class DeployProduction extends Command
         // 5. Storage link
         $this->step('5. Storage link kontrolü');
         if (!is_link(public_path('storage'))) {
-            $this->runCommand('storage:link');
+            $this->executeCommand('storage:link');
         } else {
             $this->line('  ✓ Storage link mevcut');
         }
 
         // 6. Queue restart
         $this->step('6. Queue worker yeniden başlat');
-        $this->runCommand('queue:restart');
+        $this->executeCommand('queue:restart');
 
         // 7. Warm up cache
         $this->step('7. Cache ısıtma');
-        $this->runCommand('cache:warm');
+        $this->executeCommand('cache:warm');
 
         // 8. Disable maintenance mode
         $this->step('8. Bakım modunu kapat');
-        $this->runCommand('up');
+        $this->executeCommand('up');
 
         // 9. Health check
         $this->step('9. Health check');
@@ -95,7 +95,7 @@ class DeployProduction extends Command
         $this->line("<fg=cyan;options=bold>{$message}</>");
     }
 
-    protected function runCommand(string $command, array $params = []): void
+    protected function executeCommand(string $command, array $params = []): void
     {
         if ($this->option('dry-run')) {
             $this->line("  → php artisan {$command} " . json_encode($params));
