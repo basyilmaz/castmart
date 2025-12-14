@@ -104,7 +104,8 @@
             "CastMart\\SMS\\": "packages/CastMart/SMS/src",
             "CastMart\\Tenant\\": "packages/CastMart/Tenant/src",
             "CastMart\\Marketing\\": "packages/CastMart/Marketing/src",
-            "CastMart\\PayTR\\": "packages/CastMart/PayTR/src"
+            "CastMart\\PayTR\\": "packages/CastMart/PayTR/src",
+            "CastMart\\Param\\": "packages/CastMart/Param/src"
         }
     },
     "autoload-dev": {

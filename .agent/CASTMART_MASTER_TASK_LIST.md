@@ -28,7 +28,7 @@
 | Faz | Toplam Görev | Tamamlanan | İlerleme |
 |-----|--------------|------------|----------|
 | FAZ 0 | 25 | 8 | 32% |
-| FAZ 1 | 20 | 18 | 90% |
+| FAZ 1 | 20 | 19 | 95% |
 | FAZ 2 | 15 | 16 | 100% |
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
@@ -121,7 +121,7 @@
 | 1.1.2 | iyzico 3D Secure desteği ekle | [x] | P0 | 1 gün |
 | 1.1.3 | iyzico taksit seçenekleri (2-12 ay) | [x] | P0 | 1 gün |
 | 1.1.4 | PayTR ödeme entegrasyonu (alternatif) | [x] | P1 | 2 gün |
-| 1.1.5 | Param ödeme entegrasyonu (alternatif) | [ ] | P2 | 2 gün |
+| 1.1.5 | Param ödeme entegrasyonu (alternatif) | [x] | P2 | 2 gün |
 | 1.1.6 | Stripe entegrasyonu (global pazarlar için) | [ ] | P2 | 2 gün |
 | 1.1.7 | Ödeme yöntemi admin panel yönetimi | [ ] | P1 | 1 gün |
 

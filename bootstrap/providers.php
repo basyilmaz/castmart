@@ -56,4 +56,5 @@ return [
     CastMart\Marketing\Providers\MarketingServiceProvider::class,
     CastMart\PayTR\Providers\PayTRServiceProvider::class,
     App\Providers\CdnServiceProvider::class,
+    CastMart\Param\Providers\ParamServiceProvider::class,
 ];
