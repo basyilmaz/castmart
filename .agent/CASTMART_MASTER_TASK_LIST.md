@@ -33,7 +33,7 @@
 | FAZ 3 | 12 | 12 | 100% |
 | FAZ 4 | 24 | 20 | 83% |
 | FAZ 5 | 18 | 18 | 100% |
-| FAZ 6 | 15 | 13 | 87% |
+| FAZ 6 | 15 | 14 | 93% |
 | FAZ 7 | 20 | 0 | 0% |
 | FAZ 8 | 22 | 14 | 64% |
 | **TOPLAM** | **171** | **103** | **60%** |
@@ -403,7 +403,7 @@ $schedule->command('trendyol:check-stock')->hourly();
 | # | Görev | Durum | Öncelik | Süre |
 |---|-------|-------|---------|------|
 | 6.1.1 | Unit test altyapısı kurulumu (PHPUnit/Pest) | [x] | P1 | 1 gün |
-| 6.1.2 | Feature test'ler için factory'ler | [ ] | P1 | 2 gün |
+| 6.1.2 | Feature test'ler için factory'ler | [x] | P1 | 2 gün |
 | 6.1.3 | Trendyol modülü unit testleri | [x] | P1 | 3 gün |
 | 6.1.4 | API endpoint testleri | [x] | P1 | 2 gün |
 | 6.1.5 | Marketing/Coupon testleri | [x] | P1 | 2 gün |
