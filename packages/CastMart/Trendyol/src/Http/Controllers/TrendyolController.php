@@ -1888,5 +1888,121 @@ class TrendyolController extends Controller
         return back()->with('error', $result['message'])
                      ->with('errors_list', $result['errors']);
     }
+
+    // ===== CHART DATA (Chart.js) =====
+
+    /**
+     * Dashboard grafik verilerini getir (tümü)
+     */
+    public function getChartData(Request $request)
+    {
+        $account = null;
+        if ($request->account_id) {
+            $account = MarketplaceAccount::find($request->account_id);
+        }
+
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getAllDashboardData(),
+        ]);
+    }
+
+    /**
+     * Satış grafiği verisi
+     */
+    public function getSalesChartData(Request $request)
+    {
+        $days = $request->input('days', 30);
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getSalesChartData($days),
+        ]);
+    }
+
+    /**
+     * Kategori satış dağılımı
+     */
+    public function getCategoryChartData(Request $request)
+    {
+        $days = $request->input('days', 30);
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getCategorySalesData($days),
+        ]);
+    }
+
+    /**
+     * Buybox performans grafiği
+     */
+    public function getBuyboxChartData(Request $request)
+    {
+        $days = $request->input('days', 14);
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getBuyboxChartData($days),
+        ]);
+    }
+
+    /**
+     * Stok durum grafiği
+     */
+    public function getStockChartData(Request $request)
+    {
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getStockStatusData(),
+        ]);
+    }
+
+    /**
+     * Komisyon analizi grafiği
+     */
+    public function getCommissionChartData(Request $request)
+    {
+        $days = $request->input('days', 30);
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getCommissionChartData($days),
+        ]);
+    }
+
+    /**
+     * Sipariş durumları grafiği
+     */
+    public function getOrderStatusChartData(Request $request)
+    {
+        $days = $request->input('days', 30);
+        $account = $request->account_id ? MarketplaceAccount::find($request->account_id) : null;
+        
+        $chartService = new \CastMart\Trendyol\Services\ChartDataService($account);
+        
+        return response()->json([
+            'success' => true,
+            'data' => $chartService->getOrderStatusData($days),
+        ]);
+    }
 }
+
 

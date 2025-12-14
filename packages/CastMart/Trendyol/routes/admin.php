@@ -120,5 +120,14 @@ Route::group([
     Route::get('/excel/import', [TrendyolController::class, 'excelImportPage'])->name('admin.marketplace.trendyol.excel.import');
     Route::post('/excel/import-price-update', [TrendyolController::class, 'importPriceUpdate'])->name('admin.marketplace.trendyol.excel.import-price');
     Route::post('/excel/import-products', [TrendyolController::class, 'importProducts'])->name('admin.marketplace.trendyol.excel.import-products');
+
+    // Chart.js API Endpoints
+    Route::get('/api/charts/all', [TrendyolController::class, 'getChartData'])->name('admin.marketplace.trendyol.charts.all');
+    Route::get('/api/charts/sales', [TrendyolController::class, 'getSalesChartData'])->name('admin.marketplace.trendyol.charts.sales');
+    Route::get('/api/charts/categories', [TrendyolController::class, 'getCategoryChartData'])->name('admin.marketplace.trendyol.charts.categories');
+    Route::get('/api/charts/buybox', [TrendyolController::class, 'getBuyboxChartData'])->name('admin.marketplace.trendyol.charts.buybox');
+    Route::get('/api/charts/stock', [TrendyolController::class, 'getStockChartData'])->name('admin.marketplace.trendyol.charts.stock');
+    Route::get('/api/charts/commission', [TrendyolController::class, 'getCommissionChartData'])->name('admin.marketplace.trendyol.charts.commission');
+    Route::get('/api/charts/order-status', [TrendyolController::class, 'getOrderStatusChartData'])->name('admin.marketplace.trendyol.charts.order-status');
 });
 
