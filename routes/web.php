@@ -14,6 +14,9 @@ require __DIR__ . '/health.php';
 // Two-Factor Authentication routes
 require __DIR__ . '/two-factor.php';
 
+// Image cache routes (Railway dynamic image resizing)
+require __DIR__ . '/imagecache.php';
+
 // Storage fallback route (when symlink doesn't work on Railway)
 Route::get('storage/{path}', function ($path) {
     $filePath = storage_path('app/public/' . $path);
