@@ -46,7 +46,8 @@
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-sitemap": "^7.3",
         "stevebauman/purify": "^6.3",
-        "iyzico/iyzipay-php": "^2.0"
+        "iyzico/iyzipay-php": "^2.0",
+        "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
         "bagisto/laravel-datafaker": "2.3.*",
