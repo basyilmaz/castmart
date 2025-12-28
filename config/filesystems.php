@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'public'),
+    'default' => 'public', // Hardcoded to avoid R2 S3 driver issues
 
     /*
     |--------------------------------------------------------------------------
