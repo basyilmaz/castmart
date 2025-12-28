@@ -6,15 +6,17 @@ use Illuminate\Support\Facades\DB;
 return new class extends Migration
 {
     /**
-     * Update channel logo to CastMart branding
+     * Update channel - clear logo/favicon to use default from blade
+     * New logo is in public/images/logo.png and referenced directly in templates
      */
     public function up(): void
     {
-        // Update channel with CastMart logo
+        // Clear channel logo/favicon to avoid Storage::url error with R2
+        // The new logo is served directly from public/images/
         DB::table('channels')
             ->update([
-                'logo' => '/images/logo.png',
-                'favicon' => '/images/favicon.png',
+                'logo' => null,
+                'favicon' => null,
             ]);
     }
 
