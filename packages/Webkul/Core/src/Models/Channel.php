@@ -108,6 +108,7 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get logo image url.
+     * Uses public disk explicitly to avoid R2/S3 driver issues
      */
     public function logo_url()
     {
@@ -115,7 +116,7 @@ class Channel extends TranslatableModel implements ChannelContract
             return;
         }
 
-        return Storage::url($this->logo);
+        return Storage::disk('public')->url($this->logo);
     }
 
     /**
@@ -128,6 +129,7 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get favicon image url.
+     * Uses public disk explicitly to avoid R2/S3 driver issues
      */
     public function favicon_url()
     {
@@ -135,7 +137,7 @@ class Channel extends TranslatableModel implements ChannelContract
             return;
         }
 
-        return Storage::url($this->favicon);
+        return Storage::disk('public')->url($this->favicon);
     }
 
     /**
