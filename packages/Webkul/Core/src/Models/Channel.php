@@ -108,15 +108,16 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get logo image url.
-     * Uses public disk explicitly to avoid R2/S3 driver issues
+     * Bypasses Storage facade completely to avoid R2/S3 driver issues
      */
     public function logo_url()
     {
         if (! $this->logo) {
-            return;
+            return null;
         }
 
-        return Storage::disk('public')->url($this->logo);
+        // Return direct URL path, bypassing Storage facade
+        return url('storage/' . $this->logo);
     }
 
     /**
@@ -129,15 +130,16 @@ class Channel extends TranslatableModel implements ChannelContract
 
     /**
      * Get favicon image url.
-     * Uses public disk explicitly to avoid R2/S3 driver issues
+     * Bypasses Storage facade completely to avoid R2/S3 driver issues
      */
     public function favicon_url()
     {
         if (! $this->favicon) {
-            return;
+            return null;
         }
 
-        return Storage::disk('public')->url($this->favicon);
+        // Return direct URL path, bypassing Storage facade
+        return url('storage/' . $this->favicon);
     }
 
     /**
