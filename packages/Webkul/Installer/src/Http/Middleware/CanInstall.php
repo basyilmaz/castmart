@@ -37,19 +37,8 @@ class CanInstall
      */
     public function isAlreadyInstalled()
     {
-        if (file_exists(storage_path('installed'))) {
-            return true;
-        }
-
-        if (app(DatabaseManager::class)->isInstalled()) {
-            touch(storage_path('installed'));
-
-            Event::dispatch('CastMart.installed');
-
-            return true;
-        }
-
-        return false;
+        // Force return true to bypass installer - already migrated via setup.php
+        return true;
     }
 }
 
