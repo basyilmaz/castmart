@@ -25,7 +25,7 @@ package-lock.json
 /storage/*.key
 /storage/dcc-data/
 /test-results
-/vendor
+# /vendor  # Included for cPanel deployment (no SSH)
 yarn.lock
 yarn-error.log
 /test-results
